@@ -1,0 +1,22 @@
+name: Validate Semver Branch Name
+
+on:
+  push:
+    branches:
+      - '**'  # Ejecuta en todos los branches
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate branch name follows semver pattern
+        run: |
+          # Extrae solo el nombre del branch (sin refs/heads/)
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          # Verifica si el nombre cumple el patrón semver (ej: 1.2, 10.20, 123.456)
+          if [[ "$BRANCH_NAME" =~ ^[0-9]+\.[0-9]+$ ]]; then
+            echo "Branch name '$BRANCH_NAME' is valid (semver pattern detected)."
+          else
+            echo "❌ Invalid branch name: '$BRANCH_NAME'. The branch name must follow the pattern: <major>.<minor> (e.g., 1.2, 10.20)."
+            exit 1
+          fi
