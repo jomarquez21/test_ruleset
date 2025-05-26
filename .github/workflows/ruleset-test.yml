@@ -21,7 +21,7 @@ jobs:
                   "exclude": [
                     "refs/heads/[0-9].[0-9]",
                     "refs/heads/[0-9].[0-9][0-9]",
-                    "refs/heads/[0-9][0-9].[0-9]"
+                    "refs/heads/[0-9][0-9].[0-9]",
                     "refs/heads/[0-9][0-9].[0-9][0-9]"
                   ],
                   "include": ["~ALL"]
